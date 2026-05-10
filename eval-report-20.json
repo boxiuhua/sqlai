@@ -1,0 +1,188 @@
+{
+  "total": 20,
+  "passed": 6,
+  "skill_accuracy": 0.8,
+  "column_accuracy": 0.3,
+  "items": [
+    {
+      "id": "D001",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "D002",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "D003",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "topn",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `product_id` in scope SELECT product_id AS dimension, sum(amount) AS value FROM default.orders GROUP BY product_id ORDER BY value DESC LIMIT 5. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    },
+    {
+      "id": "D004",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "topn",
+      "error": null
+    },
+    {
+      "id": "D005",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "compare_period",
+      "error": null
+    },
+    {
+      "id": "D006",
+      "passed": false,
+      "skill_hit": false,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": null,
+      "error": "select/skill: no tool_call returned"
+    },
+    {
+      "id": "D007",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "share_breakdown",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `product_id` in scope SELECT product_id AS dimension, sum(amount) AS value, sum(amount) / sum(sum(amount)) OVER () AS share FROM default.orders GROUP BY product_id ORDER BY value DESC. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    },
+    {
+      "id": "D008",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "trend_segment",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `name` in scope SELECT toStartOfDay(created_at) AS bucket, name AS segment, sum(amount) AS value FROM default.orders GROUP BY bucket, name ORDER BY bucket ASC, value DESC. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    },
+    {
+      "id": "G001",
+      "passed": false,
+      "skill_hit": false,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "G002",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "correlation_matrix",
+      "error": null
+    },
+    {
+      "id": "G003",
+      "passed": false,
+      "skill_hit": false,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": null,
+      "error": "validate/exec: validation failed at step 0: parse error: sql parser error: Expected: ), found: ( at Line: 1, Column: 72"
+    },
+    {
+      "id": "F001",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": "forecast_simple",
+      "error": null
+    },
+    {
+      "id": "F002",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "forecast_simple",
+      "error": "execute/exec: compute failed at step 2: invalid param: need >= 2 points to fit"
+    },
+    {
+      "id": "M001",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": "cluster_kmeans",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `quantity` in scope SELECT amount, quantity FROM default.orders LIMIT 5000. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    },
+    {
+      "id": "M002",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "classify_logreg",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `is_paid` in scope SELECT amount, is_paid FROM default.orders LIMIT 5000. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    },
+    {
+      "id": "R001",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "topn",
+      "error": null
+    },
+    {
+      "id": "R002",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "R003",
+      "passed": false,
+      "skill_hit": false,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "R004",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "share_breakdown",
+      "error": null
+    },
+    {
+      "id": "R005",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": true,
+      "picked_skill": "cluster_kmeans",
+      "error": null
+    }
+  ]
+}

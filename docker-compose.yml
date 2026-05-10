@@ -1,0 +1,86 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sqlai-pg
+    environment:
+      POSTGRES_USER: sqlai
+      POSTGRES_PASSWORD: sqlai
+      POSTGRES_DB: sqlai
+    ports:
+      - "5432:5432"
+    volumes:
+      - sqlai_pg_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sqlai"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: sqlai-ch
+    ports:
+      - "8123:8123"   # HTTP
+      - "9000:9000"   # native
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8123/ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  sidecar:
+    build: ./sidecar
+    container_name: sqlai-sidecar
+    ports:
+      - "8081:8081"
+    environment:
+      # 设为 1 时容器启动即下载 BGE-M3（首次启动慢，但可避免首请求 5-10 分钟懒加载）。
+      SIDECAR_PRELOAD_EMBED: "0"
+      # HuggingFace 镜像（CN 友好），首次拉 BGE-M3 ~2.3GB；境外用户可注释掉。
+      HF_ENDPOINT: "https://hf-mirror.com"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8081/healthz')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: crates/sqlai-api/Dockerfile
+    container_name: sqlai-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      sidecar:
+        condition: service_started
+    environment:
+      SQLAI_PG_URL: "postgres://sqlai:sqlai@postgres:5432/sqlai"
+      SIDECAR_URL: "http://sidecar:8081"
+      CLICKHOUSE_URL: "http://host.docker.internal:8123"
+      CLICKHOUSE_USER: "${CLICKHOUSE_USER:-admin}"
+      CLICKHOUSE_PASSWORD: "${CLICKHOUSE_PASSWORD}"
+      CLICKHOUSE_DB: "${CLICKHOUSE_DB:-default}"
+      DEEPSEEK_API_KEY: "${DEEPSEEK_API_KEY}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build: ./web
+    container_name: sqlai-web
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  sqlai_pg_data:

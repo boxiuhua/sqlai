@@ -1,0 +1,16 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env
+.env.local
+
+/sidecar/.venv/
+/sidecar/*.egg-info/
+/sidecar/.pytest_cache/
+/sidecar/__pycache__/
+/sidecar/app/__pycache__/
+/sidecar/tests/__pycache__/

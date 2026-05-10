@@ -1,0 +1,9 @@
+target
+.git
+node_modules
+web
+sidecar
+docs
+*.log
+.env
+.env.local

@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/fraunces/index.css";
+@import "@fontsource/ibm-plex-sans/300.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+
+@theme {
+  /* Surfaces */
+  --color-canvas:   #FBF7F0;
+  --color-paper:    #FFFFFF;
+  --color-deep:     #F1ECE0;
+  /* Text */
+  --color-ink:      #1F1A14;
+  --color-soft:     #4B4640;
+  --color-mute:     #8E867B;
+  /* Lines */
+  --color-rule:     #E5DDCB;
+  --color-strong:   #C8BDA5;
+  /* Brand palette (charts + accents) */
+  --color-vermillion: #B8341B;
+  --color-cobalt:     #2C4F7C;
+  --color-ochre:      #B8893E;
+  --color-sage:       #5C7252;
+  --color-cocoa:      #6B4226;
+
+  --font-sans:    "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-display: "Fraunces Variable", "Songti SC", "STSong", "Noto Serif SC", serif;
+  --font-mono:    "IBM Plex Mono", "Courier New", monospace;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Newspaper-style subtle paper grain via repeating gradient (no images). */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(rgba(31,26,20,0.022) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+
+/* Tabular numbers for tables / numeric columns */
+.tabular { font-variant-numeric: tabular-nums; }
+.display { font-family: var(--font-display); font-feature-settings: "ss01"; }
+
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-strong);
+  border-radius: 999px;
+  border: 2px solid var(--color-canvas);
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 360ms cubic-bezier(0.2, 0.8, 0.2, 1); }

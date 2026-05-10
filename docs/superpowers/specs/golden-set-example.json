@@ -1,0 +1,22 @@
+[
+  {"id":"D001","question":"看一下 default.orders 按天的订单金额趋势","datasource":"ch_local","expected_skill":"metric_overview","expected_columns":["bucket","value"],"expected_min_rows":1},
+  {"id":"D002","question":"近 30 天 default.orders 按周的销量趋势","datasource":"ch_local","expected_skill":"metric_overview","expected_columns":["bucket","value"],"expected_min_rows":1},
+  {"id":"D003","question":"default.orders 销售额最高的前 5 个商品","datasource":"ch_local","expected_skill":"topn","expected_columns":["dimension","value"],"expected_min_rows":1},
+  {"id":"D004","question":"default.orders 订单数最多的前 10 名用户","datasource":"ch_local","expected_skill":"topn","expected_columns":["dimension","value"],"expected_min_rows":1},
+  {"id":"D005","question":"对比 2024-01 与 2024-02 月度 default.orders 总金额","datasource":"ch_local","expected_skill":"compare_period","expected_columns":["current","baseline"],"expected_min_rows":1},
+  {"id":"D006","question":"对比上周与本周 default.orders 销售额，按渠道","datasource":"ch_local","expected_skill":"compare_period","expected_columns":["dimension","current","baseline","delta"],"expected_min_rows":0},
+  {"id":"D007","question":"default.orders 各商品销售额占比","datasource":"ch_local","expected_skill":"share_breakdown","expected_columns":["dimension","value","share"],"expected_min_rows":1},
+  {"id":"D008","question":"default.orders 不同商品按天的销售额走势","datasource":"ch_local","expected_skill":"trend_segment","expected_columns":["bucket","segment","value"],"expected_min_rows":1},
+  {"id":"G001","question":"default.orders 销售下滑，按商品+用户拆解差异","datasource":"ch_local","expected_skill":"drill_down","expected_columns":["delta"],"expected_min_rows":0},
+  {"id":"G002","question":"default.orders 各列之间的相关性","datasource":"ch_local","expected_skill":"correlation_matrix","expected_columns":["col1","col2","corr"],"expected_min_rows":1},
+  {"id":"G003","question":"default.orders 金额分布在 1 月与 2 月之间的差异","datasource":"ch_local","expected_skill":"distribution_shift","expected_columns":["period","lo","hi","c"],"expected_min_rows":0},
+  {"id":"F001","question":"未来 7 天 default.orders 销售额预估","datasource":"ch_local","expected_skill":"forecast_simple","expected_columns":["bucket","value","kind"],"expected_min_rows":1},
+  {"id":"F002","question":"按周做 default.orders 趋势的 4 周外推","datasource":"ch_local","expected_skill":"forecast_simple","expected_columns":["bucket","value","kind"],"expected_min_rows":1},
+  {"id":"M001","question":"对 default.orders 的 amount + quantity 做 K-means k=3","datasource":"ch_local","expected_skill":"cluster_kmeans","expected_columns":["cluster"],"expected_min_rows":0},
+  {"id":"M002","question":"用 default.orders.amount,quantity 预测 is_paid","datasource":"ch_local","expected_skill":"classify_logreg","expected_columns":["accuracy"],"expected_min_rows":1},
+  {"id":"R001","question":"default.orders 当天最贵的 3 笔订单","datasource":"ch_local","expected_skill":"topn","expected_columns":["dimension","value"],"expected_min_rows":1},
+  {"id":"R002","question":"default.orders 月成交金额平均","datasource":"ch_local","expected_skill":"metric_overview","expected_columns":["bucket","value"],"expected_min_rows":1},
+  {"id":"R003","question":"default.orders 周环比销售额增长率最高的 5 个商品","datasource":"ch_local","expected_skill":"compare_period","expected_columns":["dimension","delta"],"expected_min_rows":0},
+  {"id":"R004","question":"default.products 各品类商品数量占比","datasource":"ch_local","expected_skill":"share_breakdown","expected_columns":["dimension","value","share"],"expected_min_rows":0},
+  {"id":"R005","question":"default.orders 按用户分群（K=4）","datasource":"ch_local","expected_skill":"cluster_kmeans","expected_columns":["cluster"],"expected_min_rows":0}
+]

@@ -1,0 +1,25 @@
+[package]
+name = "sqlai-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sqlai-core      = { workspace = true }
+sqlai-store     = { workspace = true }
+sqlai-exec      = { workspace = true }
+sqlai-llm       = { workspace = true }
+sqlai-skills    = { workspace = true }
+sqlai-pipeline  = { workspace = true }
+tokio           = { workspace = true }
+clap            = { version = "4", features = ["derive"] }
+anyhow          = { workspace = true }
+tracing         = { workspace = true }
+tracing-subscriber = { workspace = true }
+uuid            = { workspace = true }
+serde           = { workspace = true }
+serde_json      = { workspace = true }
+
+[[bin]]
+name = "sqlai"
+path = "src/main.rs"

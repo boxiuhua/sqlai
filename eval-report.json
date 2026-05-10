@@ -1,0 +1,26 @@
+{
+  "total": 2,
+  "passed": 1,
+  "skill_accuracy": 1.0,
+  "column_accuracy": 0.5,
+  "items": [
+    {
+      "id": "G001",
+      "passed": true,
+      "skill_hit": true,
+      "column_hit": true,
+      "rows_hit": true,
+      "picked_skill": "metric_overview",
+      "error": null
+    },
+    {
+      "id": "G002",
+      "passed": false,
+      "skill_hit": true,
+      "column_hit": false,
+      "rows_hit": false,
+      "picked_skill": "topn",
+      "error": "execute/exec: execute failed at step 0: engine error: clickhouse 404 Not Found: Code: 47. DB::Exception: Unknown expression identifier `channel` in scope SELECT channel AS dimension, sum(amount) AS value FROM default.orders GROUP BY channel ORDER BY value DESC LIMIT 10. (UNKNOWN_IDENTIFIER) (version 26.4.2.10 (official build))"
+    }
+  ]
+}

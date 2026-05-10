@@ -1,0 +1,10 @@
+[package]
+name = "sqlai-dialect"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sqlai-core  = { workspace = true }
+sqlparser   = { workspace = true }
+thiserror   = { workspace = true }

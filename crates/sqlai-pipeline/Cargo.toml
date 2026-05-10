@@ -1,0 +1,29 @@
+[package]
+name = "sqlai-pipeline"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sqlai-core      = { workspace = true }
+sqlai-dialect   = { workspace = true }
+sqlai-llm       = { workspace = true }
+sqlai-exec      = { workspace = true }
+sqlai-store     = { workspace = true }
+sqlai-skills    = { workspace = true }
+serde           = { workspace = true }
+serde_json      = { workspace = true }
+async-trait     = { workspace = true }
+thiserror       = { workspace = true }
+tokio           = { workspace = true }
+tracing         = { workspace = true }
+uuid            = { workspace = true }
+chrono          = { workspace = true }
+sqlx            = { workspace = true }
+
+[dev-dependencies]
+tokio                  = { workspace = true }
+wiremock               = "0.6"
+testcontainers         = { workspace = true }
+testcontainers-modules = { workspace = true }
+serde_json             = { workspace = true }
