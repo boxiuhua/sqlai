@@ -64,7 +64,7 @@ services:
     environment:
       SQLAI_PG_URL: "postgres://sqlai:sqlai@postgres:5432/sqlai"
       SIDECAR_URL: "http://sidecar:8081"
-      CLICKHOUSE_URL: "http://host.docker.internal:8123"
+      CLICKHOUSE_URL: "${CLICKHOUSE_URL:-http://192.168.20.176:8123}"
       CLICKHOUSE_USER: "${CLICKHOUSE_USER:-admin}"
       CLICKHOUSE_PASSWORD: "${CLICKHOUSE_PASSWORD}"
       CLICKHOUSE_DB: "${CLICKHOUSE_DB:-default}"
